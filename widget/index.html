@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erudit Widget Test</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    h1 {
+      color: #003B7A;
+      margin-bottom: 20px;
+    }
+    p {
+      color: #5F6368;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-top: 30px;
+    }
+    button {
+      background: #003B7A;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #002856;
+    }
+    .info {
+      background: #F5F7FA;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      border-left: 4px solid #003B7A;
+    }
+    .info h3 {
+      margin-top: 0;
+      color: #003B7A;
+    }
+    .info ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    .info li {
+      margin: 8px 0;
+      color: #5F6368;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎓 Тестирование виджета Эрудит</h1>
+    <p>
+      Это тестовая страница для embeddable виджета "Эрудит" — ИИ-помощника колледжа НОМОС.
+    </p>
+    <p>
+      Виджет использует Shadow DOM для изоляции стилей и не конфликтует с CSS основного сайта.
+      Все данные сессии сохраняются в localStorage браузера.
+    </p>
+
+    <div class="info">
+      <h3>Возможности виджета:</h3>
+      <ul>
+        <li><strong>State 1:</strong> Свёрнутая аватарка с индикатором онлайн (правый нижний угол)</li>
+        <li><strong>State 2:</strong> Hover-подсказка при наведении на desktop</li>
+        <li><strong>State 3:</strong> Welcome screen с категориями быстрого доступа</li>
+        <li><strong>State 4:</strong> Полноценный чат с mock AI-ответами</li>
+        <li><strong>Адаптивность:</strong> Полная поддержка desktop, tablet и mobile</li>
+        <li><strong>Персистентность:</strong> Сессия сохраняется при закрытии виджета</li>
+      </ul>
+    </div>
+
+    <div class="controls">
+      <button onclick="openWidget()">📱 Открыть виджет</button>
+      <button onclick="closeWidget()">✖️ Закрыть виджет</button>
+      <button onclick="clearSession()">🗑️ Очистить сессию</button>
+    </div>
+
+    <div class="info" style="margin-top: 40px;">
+      <h3>📋 Интеграция на сайт:</h3>
+      <p>Добавьте этот код перед закрывающим тегом <code>&lt;/body&gt;</code>:</p>
+      <pre style="background: #1A237E; color: #fff; padding: 16px; border-radius: 6px; overflow-x: auto;"><code>&lt;script src="https://your-cdn.com/erudit-widget.js"&gt;&lt;/script&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- Widget Script -->
+  <script type="module" src="/src/entry.tsx"></script>
+
+  <script>
+    function openWidget() {
+      if (window.NomosEruditWidget) {
+        window.NomosEruditWidget.open();
+      }
+    }
+
+    function closeWidget() {
+      if (window.NomosEruditWidget) {
+        window.NomosEruditWidget.close();
+      }
+    }
+
+    function clearSession() {
+      localStorage.removeItem('erudit-messages');
+      alert('✅ Сессия очищена. Обновите страницу для применения изменений.');
+    }
+
+    // Widget готов
+    window.addEventListener('load', () => {
+      console.log('✅ Erudit Widget загружен');
+      if (window.NomosEruditWidget) {
+        console.log('📦 Widget API:', window.NomosEruditWidget);
+      }
+    });
+  </script>
+</body>
+</html>

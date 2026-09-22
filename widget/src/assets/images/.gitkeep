@@ -1,0 +1,12 @@
+# Placeholder for image assets
+
+This directory will contain:
+- erudit.png (full character for WelcomeScreen hero)
+- erudit-avatar.png (smaller avatar for AvatarButton and ChatScreen)
+- college-building.png (building image for WelcomeScreen bottom section)
+- admission.svg (category icon)
+- specialties.svg (category icon)
+- schedule.svg (category icon)
+- documents.svg (category icon)
+- student-life.svg (category icon)
+- dormitory.svg (category icon)
